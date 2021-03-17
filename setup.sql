@@ -1,0 +1,27 @@
+DROP TABLE IF EXISTS todos;
+DROP TABLE IF EXISTS lists;
+DROP TABLE IF EXISTS users;
+
+CREATE TABLE users(
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE lists(
+  id SERIAL PRIMARY KEY,
+  title VARCHAR(50) NOT NULL,
+  author_id INT REFERENCES users(id) NOT NULL
+);
+
+CREATE TABLE todos(
+  id SERIAL PRIMARY KEY,
+  title VARCHAR(100) NOT NULL,
+  date DATE,
+  completed BOOLEAN DEFAULT false,
+  list_id INT REFERENCES lists(id) NOT NULL,
+  user_id INT,
+  FOREIGN KEY (user_id) REFERENCES users
+);
+
+
+
