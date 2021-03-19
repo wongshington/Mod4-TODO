@@ -1,0 +1,27 @@
+{
+  "name": "Mod4-TODO",
+  "version": "1.0.0",
+  "description": "a practice todo app built using SQL, Sequelize, Node.js, and Express.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "db-create": "npx sequelize-cli db:create"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wongshington/Mod4-TODO.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wongshington/Mod4-TODO/issues"
+  },
+  "homepage": "https://github.com/wongshington/Mod4-TODO#readme",
+  "dependencies": {
+    "pg": "^8.5.1",
+    "pug": "^3.0.2",
+    "sequelize": "^5.21.5",
+    "sequelize-cli": "^5.5.1"
+  }
+}
