@@ -2,24 +2,34 @@
 
 module.exports = {
 	up: (queryInterface, Sequelize) => {
-		return queryInterface.bulkInsert("Users", [
+		return queryInterface.bulkInsert("Lists", [
 			{
-				name: "Tom",
+				title: "List 1",
+				authorId: 1,
 				createdAt: new Date(),
 				updatedAt: new Date(),
 			},
 			{
-				name: "Jerry",
+				title: "List 2",
+				authorId: 1,
 				createdAt: new Date(),
 				updatedAt: new Date(),
 			},
 			{
-				name: "BreakBot",
+				title: "List 3",
+				authorId: 2,
 				createdAt: new Date(),
 				updatedAt: new Date(),
 			},
 			{
-				name: "BreadIsDead",
+				title: "List 4",
+				authorId: 3,
+				createdAt: new Date(),
+				updatedAt: new Date(),
+			},
+			{
+				title: "List 5",
+				authorId: 4,
 				createdAt: new Date(),
 				updatedAt: new Date(),
 			},
@@ -27,6 +37,8 @@ module.exports = {
 	},
 
 	down: (queryInterface, Sequelize) => {
-		return queryInterface.bulkDelete("Users", { id: { [Sequelize.Op.gt]: 0 } });
+		return queryInterface.bulkDelete("Lists", {
+			id: { [Sequelize.Op.gt]: 0 },
+		});
 	},
 };

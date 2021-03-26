@@ -1,0 +1,6 @@
+extends layout.pug
+block content
+  h2 headerText
+  form(action='/todos' method='post')
+    input(placeholder='enter title here' name='title') 
+    button(type='submit') create Todo

@@ -1,0 +1,10 @@
+extends layout.pug
+block content
+  h1= headText
+  ul
+    each todo in todos
+      li= todo.title
+block footer
+  footer
+    div footer vibes
+    
