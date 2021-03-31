@@ -2,5 +2,16 @@ extends layout.pug
 block content
   h2 headerText
   form(action='/todos' method='post')
-    input(placeholder='enter title here' name='title') 
-    button(type='submit') create Todo
+    input(type='hidden' name='_csrf' value=csrfToken)
+
+    label(for="todo-title") Add a Todo!
+    input(id="todo-title" placeholder='enter todo here' required name='title') 
+
+    br
+    
+    label(for="listId") List (required)
+    select(name="ListId" value="Pick List" id="listId" required)
+      each list in lists
+        option(value=list.id)= list.title
+
+    button(type='submit') Create Todo

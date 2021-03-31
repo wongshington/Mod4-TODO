@@ -1,6 +1,10 @@
 const express = require("express");
+
 const router = express.Router();
-const { Todo } = require("../models");
+const { Todo, List } = require("../models");
+
+const csrf = require("csurf");
+const csrfProtection = csrf({ cookie: true });
 
 router.get("/", async (req, res) => {
 	// recordWhoIsLooking() // makes some request to another server that is persisting visitor data
@@ -8,18 +12,19 @@ router.get("/", async (req, res) => {
 	res.render("todos", { headText: "Todo or not To Do", todos });
 });
 
-router.get("/new", async (req, res) => {
-	// const todos = await Todo.findAll();
-	res.render("todo-form", { headText: "New ToDo?" });
+router.get("/new", csrfProtection, async (req, res) => {
+	const lists = await List.findAll();
+
+	res.render("todo-form", { lists, csrfToken: req.csrfToken() });
 });
 
-router.post("/", async (req, res) => {
+router.post("/", csrfProtection, async (req, res) => {
 	console.log("request bod-E", req.body);
 
-	const { title } = req.body;
-	const post = await Todo.create({ title, userId: 1, listId: 1 });
+	const { title, listId } = req.body;
+	const todo = await Todo.create({ title, userId: 1, listId: 1 });
+	console.log("---->", todo);
 
-	// res.send('testing post route')
 	res.redirect("/todos");
 });
 
