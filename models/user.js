@@ -4,6 +4,7 @@ module.exports = (sequelize, DataTypes) => {
 		"User",
 		{
 			name: DataTypes.STRING,
+			pwDigest: DataTypes.STRING,
 		},
 		{}
 	);

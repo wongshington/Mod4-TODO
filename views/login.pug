@@ -1,0 +1,24 @@
+extends layout.pug
+
+block content
+  form(action='/user/login' method='post')
+    input(type='hidden' name='_csrf' value=csrfToken)
+
+    div(class='form-group')
+      label(for="name-input")= Name
+      input(id="name-input" name="name" type="text" value=user.name)
+
+    br
+
+    div(class='form-group')
+      label(for="pw-input")= Password
+      input(id="pw-input" name="password" type="password" value="")
+    
+    br
+
+    div(class='')
+      button(type='submit' class='btn btn-primary') Login
+      a(href='/' class='btn btn-warning ml-2') Cancel
+  div
+    p: a(href='/user/signup') Don't have an account?
+
