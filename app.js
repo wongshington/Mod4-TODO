@@ -16,7 +16,7 @@ app.set("view engine", "pug");
 app.use(cookieParser(secret));
 app.use(
 	session({
-		name: "todo.sid", // naming the cookie
+		name: "todo.sid",
 		secret: secret,
 		resave: false,
 		saveUninitialized: false,
@@ -31,7 +31,7 @@ app.use(express.static("public"));
 // persist user info to session cookie
 app.use(async (req, res, next) => {
 	// Log the session object to the console
-	console.log(req.session);
+	console.log("in middleware:", req.session);
 
 	if (req.session.auth) {
 		const { userId } = req.session.auth;
@@ -63,6 +63,7 @@ const requireAuth = (req, res, next) => {
 	if (!res.locals.authenticated) {
 		return res.redirect("/user/login");
 	}
+	// if loggedIn
 	return next();
 };
 

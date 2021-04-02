@@ -13,7 +13,7 @@ const loginUser = (req, res, user) => {
 	req.session.auth = {
 		userId: user.id,
 	};
-	debugger;
+
 	console.log(req.session);
 };
 
@@ -60,7 +60,7 @@ router.get("/signup", csrfProtection, async (req, res) => {
 	res.render("signup", {
 		headText: "User Sign Up",
 
-		csrfToken: req.csrfToken(),
+		csrfToken: req.csrfToken(), // generate a new token here
 	});
 });
 
@@ -70,15 +70,16 @@ router.post(
 	signupValidators,
 	asyncHandler(async (req, res) => {
 		const { name, password } = req.body;
-		const user = User.build({ name });
-		debugger;
+		const user = User.build({ name }); // not saving to db yet
+
+		// create pwDigest to store in db instead of plaintext password
 		const hashedPassword = await bcrypt.hash(password, 10);
 		user.pwDigest = hashedPassword;
 
 		await user.save();
 
 		loginUser(req, res, user);
-		console.log(user);
+		// console.log(user);
 		res.redirect("/");
 
 		// we could implement some error handling here
