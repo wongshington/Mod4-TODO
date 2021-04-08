@@ -87,7 +87,7 @@ router.post(
 );
 
 // login routes
-router.get("/jesse", csrfProtection, async (req, res) => {
+router.get("/login", csrfProtection, async (req, res) => {
 	const user = User.build();
 	res.render("login", {
 		headText: "Login Here!",
